@@ -1,0 +1,20 @@
+{
+    "name": "chiron/coding-standard",
+    "description": "Chiron PHP Coding Standard",
+    "type": "phpcodesniffer-standard",
+    "keywords": ["Chiron", "Coding Standard", "PHP CS", "PSR12", "PSR-12"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/chiron/coding-standard/issues",
+        "source": "https://github.com/chiron/coding-standard"
+    },
+    "require": {
+        "php": "^7.1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "slevomat/coding-standard": "^5.0.0",
+        "squizlabs/php_codesniffer": "^3.4.0"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
