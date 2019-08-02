@@ -20,7 +20,7 @@
 
 ## Introduction
 
-This library provides the Chiron Coding Standard rules for PHP CodeSniffer. It is inspired by and built upon
+This library provides the Chiron Coding Standard rules for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) (`phpcs`). It is inspired by and built upon
 the [Doctrine Coding Standard](https://github.com/doctrine/coding-standard) and the [Slevomat Coding Standard](https://github.com/slevomat/coding-standard).
 
 ## Install
@@ -44,7 +44,19 @@ the Chiron Coding Standard when running `phpcs`.
 
 ## Versioning
 
-This library follows [SemVer v2.0.0](https://semver.org/).
+This library follows [SemVer](https://semver.org/) with following rules.
+
+Coding Standard document should be considered the source of truth and main object of SemVer.
+* `MAJOR` version will be incremented if new rules are added to the document.
+* `MINOR` version will be incremented if new sniffs are implemented to check for existing described rules.
+* `PATCH` version will be incremented for bug fixing - fixing a bug is considered everything which does not conform to the document - this may even lead to (temporarily) disabling an existing sniff - or part of it, until a better check is available or it is properly fixed.
+
+The implementation of the automatic checks (both custom sniffs and the ruleset.xml file) are not subject to the SemVer and may change over time to accommodate changes in PHP_CodeSniffer and provided default sniffs, which are used also by this standard.
+
+Recommended dependency on this package is on `MINOR` version (e.g. `~1.0.0`), which means effectively:
+* No new rules will be added.
+* New automatic checks may be added.
+* You get fixes for existing automatic checks, or some of them may be disabled, if regressions are found.
 
 ## Change Log
 

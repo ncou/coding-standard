@@ -5,6 +5,14 @@
     <!-- Rules -->
     <rule ref="PSR12"/>
 
+    <!-- Change the line limit defined in the PSR12 preset -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="160"/>
+            <property name="absoluteLineLimit" value="200"/>
+        </properties>
+    </rule>
+
     <!-- Force array element indentation with 4 spaces -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
 
@@ -23,13 +31,6 @@
     <!-- Forbid useless empty method overrides -->
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
 
-    <rule ref="Generic.Files.LineLength">
-        <properties>
-            <property name="lineLimit" value="160"/>
-            <property name="absoluteLineLimit" value="200"/>
-        </properties>
-    </rule>
-
     <!-- Force whitespace after a type cast -->
     <rule ref="Generic.Formatting.SpaceAfterCast"/>
 
@@ -45,25 +46,38 @@
     <!-- Forbid backtick operator -->
     <rule ref="Generic.PHP.BacktickOperator"/>
 
-    <!-- Force PHP 7 param and return types to be lowercased -->
-    <rule ref="Generic.PHP.LowerCaseType"/>
-
     <!-- Forbid `php_sapi_name()` function -->
     <rule ref="Generic.PHP.SAPIUsage"/>
+
+    <!-- Forbid deprecated functions -->
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+
+    <!-- Forbid a few alias functions, i.e. `is_double()`, `sizeof()` -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="delete" value="unset"/>
+                <element key="doubleval" value="floatval"/>
+                <element key="is_double" value="is_float"/>
+                <element key="is_integer" value="is_int"/>
+                <element key="is_long" value="is_int"/>
+                <!--<element key="is_null" value="null"/>--><!-- Disable, when null is used it forbid the use of the function -->
+                <element key="is_real" value="is_float"/>
+                <element key="is_writeable" value="is_writable"/>
+                <element key="join" value="implode"/>
+                <element key="key_exists" value="array_key_exists"/>
+                <element key="pos" value="current"/>
+                <element key="sizeof" value="count"/>
+                <element key="strchr" value="strstr"/>
+            </property>
+        </properties>
+    </rule>
 
     <!-- Forbid merge conflict artifacts left in files -->
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
 
-    <!-- Forbid whitespace before and after increment/decrement operator -->
-    <rule ref="Generic.WhiteSpace.IncrementDecrementSpacing"/>
-
     <!-- Forbid comments starting with # -->
     <rule ref="PEAR.Commenting.InlineComment"/>
-
-    <!-- Disallow else if in favor of elseif -->
-    <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
-        <type>error</type>
-    </rule>
 
     <!-- Require comma after last element in multi-line array -->
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
@@ -149,7 +163,11 @@
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
 
     <!-- Require use statements to be alphabetically sorted -->
-    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
+    <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses">
+        <properties>
+            <property name="caseSensitive" value="true"/>
+        </properties>
+    </rule>
 
     <!-- Forbid fancy group uses -->
     <rule ref="SlevomatCodingStandard.Namespaces.DisallowGroupUse"/>
@@ -206,17 +224,17 @@
     <!-- Forbid use of longhand cast operators -->
     <rule ref="SlevomatCodingStandard.PHP.TypeCast"/>
 
+    <!-- Forbid useless parentheses -->
+    <rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
+
     <!-- Require presence of declare(strict_types=1) -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
-            <property name="newlinesCountBetweenOpenTagAndDeclare" value="1"/>
+            <property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
             <property name="spacesCountAroundEqualsSign" value="0"/>
             <property name="newlinesCountAfterDeclare" value="2"/>
         </properties>
     </rule>
-
-    <!-- Forbid useless parentheses -->
-    <rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
 
     <!-- Require use of short versions of scalar types (i.e. int instead of integer) -->
     <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
@@ -229,6 +247,26 @@
 
     <!-- Require one space between typehint and variable, require no space between nullability sign and typehint -->
     <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHintSpacing"/>
+
+    <!-- Require types to be written as natively if possible;
+         require iterable types to specify phpDoc with their content;
+         forbid useless/duplicated information in phpDoc -->
+    <!--
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+        <properties>
+            <property name="allAnnotationsAreUseful" value="true"/>
+            <property name="enableEachParameterAndReturnInspection" value="true"/>
+            <property name="traversableTypeHints" type="array">
+                <element value="Traversable"/>
+            </property>
+        </properties>
+    </rule>-->
+
+    <!-- Require the return type hint to have one space (i.e. function foo(): ?int) -->
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
+
+    <!-- Forbid useless @var for constants -->
+    <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
 
     <!-- Forbid spaces around square brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
@@ -259,9 +297,6 @@
     <!-- Forbid braces around string in `echo` -->
     <rule ref="Squiz.Strings.EchoedStrings"/>
 
-    <!-- Forbid spaces in type casts -->
-    <rule ref="Squiz.WhiteSpace.CastSpacing"/>
-
     <!-- Forbid blank line after function opening brace -->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 
@@ -289,4 +324,7 @@
 
     <!-- Forbid spaces before semicolon `;` -->
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+
+    <!-- Does not allow double quotes for plain strings but does allow them if they contain a variable. -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
 </ruleset>
