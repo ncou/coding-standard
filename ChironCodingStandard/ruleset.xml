@@ -34,6 +34,9 @@
     <!-- Force whitespace after a type cast -->
     <rule ref="Generic.Formatting.SpaceAfterCast"/>
 
+    <!-- Force whitespace after `!` -->
+    <rule ref="Generic.Formatting.SpaceAfterNot"/>
+
     <!-- Forbid PHP 4 constructors -->
     <rule ref="Generic.NamingConventions.ConstructorName"/>
 
@@ -62,6 +65,7 @@
                 <element key="is_integer" value="is_int"/>
                 <element key="is_long" value="is_int"/>
                 <!--<element key="is_null" value="null"/>--><!-- Disable, when null is used it forbid the use of the function -->
+                <!--<element key="empty" value="null"/>-->
                 <element key="is_real" value="is_float"/>
                 <element key="is_writeable" value="is_writable"/>
                 <element key="join" value="implode"/>
@@ -256,6 +260,17 @@
     <!-- Forbid useless parentheses -->
     <rule ref="SlevomatCodingStandard.PHP.UselessParentheses"/>
 
+    <!-- Forbid useless semicolon `;` -->
+    <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
+
+    <!-- TODO : uncomment once slevomat publish a new release : https://github.com/slevomat/coding-standard/tree/master#slevomatcodingstandardphpreferencespacing-  -->
+    <!-- Require a space after the refenrence '&' opérator -->
+    <!--<rule ref="SlevomatCodingStandard.PHP.ReferenceSpacing">
+        <properties>
+            <property name="spacesCountAfterReference" value="1"/>
+        </properties>
+    </rule>-->
+
     <!-- Require presence of declare(strict_types=1) -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
         <properties>
@@ -353,6 +368,18 @@
 
     <!-- Forbid spaces before semicolon ';' -->
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+
+    <!-- Forbid superfluous whitespaces -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <!-- turned on by PSR12 -> turning back off -->
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+        <!-- turned off by PSR12 -> turning back on -->
+        <severity>5</severity>
+    </rule>
 
     <!-- Does not allow double quotes for plain strings but does allow them if they contain a variable. -->
     <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
