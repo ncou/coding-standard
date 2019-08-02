@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="Project" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
-    <description>PHP Coding Standards for Project</description>
+    <description>PHP Coding Standards</description>
 
     <arg name="basepath" value="."/>
     <arg name="cache" value=".phpcs-cache"/>
@@ -10,13 +10,19 @@
     <arg name="parallel" value="80"/>
     <arg name="report" value="code"/>
     <arg name="report-width" value="160"/>
-
     <!-- Show progress of the run -->
-    <arg value="nps"/>
+    <arg value="p"/>
+    <!-- Do not print warning -->
+    <arg value="n"/>
+    <!-- Show sniff codes in all reports -->
+    <arg value="s"/>
 
     <file>src/</file>
     <file>tests/</file>
 
-    <!-- Load the ruleset.xml file present in this folder -->
-    <rule ref="ChironCodingStandard"/>
+    <!-- Load the ruleset.xml file from this folder -->
+    <rule ref="ChironCodingStandard">
+        <!-- If needed you can exclude some sniffs by name -->
+        <!-- <exclude name="Generic.Files.LineLength"/> -->
+    </rule>
 </ruleset>
