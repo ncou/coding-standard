@@ -144,6 +144,18 @@
     <!-- report invalid format of inline phpDocs with @var -->
     <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration"/>
 
+    <!-- Require consistent spacing for control structures (add a line break) -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing">
+        <properties>
+            <property name="tokensToCheck" type="array">
+                <element value="T_RETURN" />
+                <element value="T_THROW" />
+                <element value="T_BREAK" />
+                <element value="T_CONTINUE" />
+            </property>
+        </properties>
+    </rule>
+
     <!-- Forbid fancy yoda conditions -->
     <rule ref="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison"/>
 
