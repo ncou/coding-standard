@@ -16,7 +16,7 @@
     <!-- Force array element indentation with 4 spaces -->
     <rule ref="Generic.Arrays.ArrayIndent"/>
 
-    <!-- Forbid `array(...)` -->
+    <!-- Forbid 'array(...)' -->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 
     <!-- Forbid empty statements -->
@@ -46,13 +46,13 @@
     <!-- Forbid backtick operator -->
     <rule ref="Generic.PHP.BacktickOperator"/>
 
-    <!-- Forbid `php_sapi_name()` function -->
+    <!-- Forbid 'php_sapi_name()' function -->
     <rule ref="Generic.PHP.SAPIUsage"/>
 
     <!-- Forbid deprecated functions -->
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
 
-    <!-- Forbid a few alias functions, i.e. `is_double()`, `sizeof()` -->
+    <!-- Forbid a few alias functions, i.e. 'is_double()', 'sizeof()' -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
             <property name="forbiddenFunctions" type="array">
@@ -171,12 +171,13 @@
     <!-- Require using Throwable instead of Exception -->
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
 
-    <!-- Forbid unused variables passed to closures via `use` -->
+    <!-- Forbid unused variables passed to closures via 'use' -->
     <rule ref="SlevomatCodingStandard.Functions.UnusedInheritedVariablePassedToClosure"/>
 
     <!-- Require use statements to be alphabetically sorted -->
     <rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses">
         <properties>
+            <property name="psr12Compatible" value="true"/>
             <property name="caseSensitive" value="true"/>
         </properties>
     </rule>
@@ -187,20 +188,24 @@
     <!-- Forbid multiple use statements on same line -->
     <rule ref="SlevomatCodingStandard.Namespaces.MultipleUsesPerLine"/>
 
-    <!-- Forbid using absolute class name references (except global ones) -->
+    <!-- Forbid using absolute class name references -->
     <rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
         <properties>
-            <property name="allowFallbackGlobalConstants" value="false"/>
-            <property name="allowFallbackGlobalFunctions" value="false"/>
-            <property name="allowFullyQualifiedGlobalClasses" value="false"/>
-            <property name="allowFullyQualifiedGlobalConstants" value="false"/>
-            <property name="allowFullyQualifiedGlobalFunctions" value="false"/>
-            <property name="allowFullyQualifiedNameForCollidingClasses" value="true"/>
-            <property name="allowFullyQualifiedNameForCollidingConstants" value="true"/>
-            <property name="allowFullyQualifiedNameForCollidingFunctions" value="true"/>
-            <property name="searchAnnotations" value="true"/>
+            <property name="allowFullyQualifiedExceptions" value="true"/>
+            <property name="allowPartialUses" value="false"/>
+            <property name="fullyQualifiedKeywords" type="array">
+                <element value="T_EXTENDS"/>
+                <element value="T_IMPLEMENTS"/>
+                <element value="T_USE"/>
+            </property>
         </properties>
     </rule>
+
+    <!-- Require absolute class name references in the @throw/@return/@param annotations -->
+    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation"/>
+
+    <!-- Require absolute class name references in the 'throw new ...' instruction -->
+    <!--<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>-->
 
     <!-- Forbid unused use statements -->
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
@@ -208,6 +213,9 @@
             <property name="searchAnnotations" value="true"/>
         </properties>
     </rule>
+
+    <!-- Forbid useless alias for classes, constants and functions -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
 
     <!-- Forbid superfluous leading backslash in use statements -->
     <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
@@ -224,13 +232,22 @@
         </properties>
     </rule>
 
+    <!-- Require newlines around namespace declaration -->
+    <rule ref="SlevomatCodingStandard.Namespaces.NamespaceSpacing"/>
+
+    <!-- Reuire one space after the namespace, and no space before the semicolon -->
+    <rule ref="SlevomatCodingStandard.Namespaces.NamespaceDeclaration"/>
+
+    <!-- Reuire only one namespace in a file -->
+    <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/>
+
     <!-- Forbid weak comparisons -->
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators"/>
 
     <!-- Forbid whitespace after the spread operator -->
     <rule ref="SlevomatCodingStandard.Operators.SpreadOperatorSpacing"/>
 
-    <!-- Forbid `list(...)` syntax -->
+    <!-- Forbid 'list(...)' syntax -->
     <rule ref="SlevomatCodingStandard.PHP.ShortList"/>
 
     <!-- Forbid use of longhand cast operators -->
@@ -251,7 +268,7 @@
     <!-- Require use of short versions of scalar types (i.e. int instead of integer) -->
     <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
 
-    <!-- Require the `null` type hint to be in the last position of annotations -->
+    <!-- Require the 'null' type hint to be in the last position of annotations -->
     <rule ref="SlevomatCodingStandard.TypeHints.NullTypeHintOnLastPosition"/>
 
     <!-- Require ? when default value is null -->
@@ -286,13 +303,13 @@
     <!-- Forbid class being in a file with different name -->
     <rule ref="Squiz.Classes.ClassFileName"/>
 
-    <!-- Force `self::` for self-reference, force lower-case self, forbid spaces around `::` -->
+    <!-- Force 'self::' for self-reference, force lower-case self, forbid spaces around '::' -->
     <rule ref="Squiz.Classes.SelfMemberReference"/>
 
-    <!-- Forbid `AND` and `OR`, require `&&` and `||` -->
+    <!-- Forbid 'AND' and 'OR', require '&&' and '||' -->
     <rule ref="Squiz.Operators.ValidLogicalOperators"/>
 
-    <!-- Forbid `global` -->
+    <!-- Forbid 'global' -->
     <rule ref="Squiz.PHP.GlobalKeyword"/>
 
     <!-- Require PHP function calls in lowercase -->
@@ -306,7 +323,7 @@
         </properties>
     </rule>
 
-    <!-- Forbid braces around string in `echo` -->
+    <!-- Forbid braces around string in 'echo' -->
     <rule ref="Squiz.Strings.EchoedStrings"/>
 
     <!-- Forbid blank line after function opening brace -->
@@ -327,14 +344,14 @@
     <!-- Require space around logical operators -->
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
 
-    <!-- Forbid spaces around `->` operator -->
+    <!-- Forbid spaces around '->' operator -->
     <rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
         <properties>
             <property name="ignoreNewlines" value="true"/>
         </properties>
     </rule>
 
-    <!-- Forbid spaces before semicolon `;` -->
+    <!-- Forbid spaces before semicolon ';' -->
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 
     <!-- Does not allow double quotes for plain strings but does allow them if they contain a variable. -->

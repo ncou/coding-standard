@@ -42,6 +42,22 @@ The latest version of PHP Coding Standard requires PHP 7.1 at least.
 Just add the default `phpcs.xml.dist` file (it can be found in the root directory) to your project and you are ready to use
 the Chiron Coding Standard when running `phpcs`.
 
+## Advanced
+
+If you need to suppress some errors, use the following tags in your php code.
+
+```php
+// phpcs:ignoreFile
+
+// phpcs:ignore
+
+// phpcs:disable
+// phpcs:enable
+```
+
+[Ignoring parts of a file](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#ignoring-parts-of-a-file)
+[Ignoring files and folders](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#ignoring-files-and-folders)
+
 ## Versioning
 
 This library follows [SemVer](https://semver.org/) with following rules.
