@@ -56,6 +56,7 @@ If you need to suppress some errors, use the following tags in your php code.
 ```
 
 [Ignoring parts of a file](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#ignoring-parts-of-a-file)
+
 [Ignoring files and folders](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Advanced-Usage#ignoring-files-and-folders)
 
 ## Versioning
