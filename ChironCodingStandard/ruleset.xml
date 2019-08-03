@@ -5,6 +5,14 @@
     <!-- Rules -->
     <rule ref="PSR12"/>
 
+    <!-- Forbid comments starting with # -->
+    <rule ref="PEAR.Commenting.InlineComment"/>
+
+    <!-- Disallow else if in favor of elseif -->
+    <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
+        <type>error</type>
+    </rule>
+
     <!-- Change the line limit defined in the PSR12 preset -->
     <rule ref="Generic.Files.LineLength">
         <properties>
@@ -80,9 +88,6 @@
     <!-- Forbid merge conflict artifacts left in files -->
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
 
-    <!-- Forbid comments starting with # -->
-    <rule ref="PEAR.Commenting.InlineComment"/>
-
     <!-- Require comma after last element in multi-line array -->
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
 
@@ -93,11 +98,31 @@
         </properties>
     </rule>
 
+    <!-- Forbid empty lines around type declarations -->
+    <rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces">
+        <properties>
+            <property name="linesCountAfterOpeningBrace" value="0"/>
+            <property name="linesCountBeforeClosingBrace" value="0"/>
+        </properties>
+        <!-- Already checked with the sniff PSR2.Classes.ClassDeclaration.CloseBraceAfterBody -->
+        <exclude name="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces.IncorrectEmptyLinesBeforeClosingBrace"/>
+    </rule>
+
     <!-- Require usage of ::class instead of __CLASS__, get_class(), get_class($this), get_called_class() and get_parent_class() -->
     <rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference"/>
 
     <!-- Forbid uses of multiple traits separated by comma -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
+
+    <!-- Require no spaces before trait use, between trait uses and one space after trait uses -->
+    <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
+        <properties>
+            <property name="linesCountAfterLastUse" value="1"/>
+            <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
+            <property name="linesCountBeforeFirstUse" value="0"/>
+            <property name="linesCountBetweenUses" value="0"/>
+        </properties>
+    </rule>
 
     <!-- Disabling this rule
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
@@ -124,6 +149,13 @@
     </rule>
     -->
 
+    <!-- Require one line beetween annotation / one line beetween description and annotation / 0 line before or after the phpDoc -->
+    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+        <properties>
+            <property name="linesCountBetweenDifferentAnnotationsTypes" value="1"/>
+        </properties>
+    </rule>
+
     <!-- Forbid useless annotations - Git and LICENCE file provide more accurate information -->
     <rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
         <properties>
@@ -145,8 +177,14 @@
     <!-- Forbid empty comments -->
     <rule ref="SlevomatCodingStandard.Commenting.EmptyComment"/>
 
-    <!-- report invalid format of inline phpDocs with @var -->
+    <!-- Report invalid format of inline phpDocs with @var -->
     <rule ref="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration"/>
+
+    <!-- Require comments with single line written as one-liners -->
+    <!-- <rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/> -->
+
+    <!-- Report use of the useless @inheritDoc annotation -->
+    <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
 
     <!-- Require consistent spacing for control structures (add a line break) -->
     <rule ref="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing">
@@ -171,6 +209,15 @@
 
     <!-- Require usage of null coalesce operator when possible -->
     <rule ref="SlevomatCodingStandard.ControlStructures.RequireNullCoalesceOperator"/>
+
+     <!-- Forbid usage of conditions when a simple return can be used -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.UselessIfConditionWithReturn"/>
+
+    <!-- Forbid usage of boolean-only ternary operator usage (e.g. $foo ? true : false) -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.UselessTernaryOperator"/>
+
+    <!-- Forbid useless unreachable catch blocks -->
+    <rule ref="SlevomatCodingStandard.Exceptions.DeadCatch"/>
 
     <!-- Require using Throwable instead of Exception -->
     <rule ref="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
@@ -337,9 +384,6 @@
             <property name="ignoreNewlines" value="true"/>
         </properties>
     </rule>
-
-    <!-- Forbid braces around string in 'echo' -->
-    <rule ref="Squiz.Strings.EchoedStrings"/>
 
     <!-- Forbid blank line after function opening brace -->
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
