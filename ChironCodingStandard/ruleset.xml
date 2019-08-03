@@ -427,4 +427,9 @@
 
     <!-- Does not allow double quotes for plain strings but does allow them if they contain a variable. -->
     <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
+
+    <!-- Force camelCase variables -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore" />
+    </rule>
 </ruleset>
