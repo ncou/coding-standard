@@ -371,11 +371,23 @@
     <!-- Forbid 'AND' and 'OR', require '&&' and '||' -->
     <rule ref="Squiz.Operators.ValidLogicalOperators"/>
 
+    <!-- Forbid global functions -->
+    <rule ref="Squiz.Functions.GlobalFunction"/>
+
     <!-- Forbid 'global' -->
     <rule ref="Squiz.PHP.GlobalKeyword"/>
 
+    <!-- Forbid functions inside functions -->
+    <rule ref="Squiz.PHP.InnerFunctions"/>
+    
     <!-- Require PHP function calls in lowercase -->
     <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
+
+    <!-- Forbid dead code -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+
+    <!-- Forbid `$this` inside static function -->
+    <rule ref="Squiz.Scope.StaticThisUsage"/>
 
     <!-- Force whitespace before and after concatenation -->
     <rule ref="Squiz.Strings.ConcatenationSpacing">
@@ -427,6 +439,13 @@
 
     <!-- Does not allow double quotes for plain strings but does allow them if they contain a variable. -->
     <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
+
+    <!-- Forbid strings in `"` unless necessary -->
+    <!--
+    <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <message>Variable "%s" not allowed in double quoted string; use sprintf() or concatenation instead</message>
+    </rule>-->
 
     <!-- Force camelCase variables -->
     <rule ref="Squiz.NamingConventions.ValidVariableName">
