@@ -5,15 +5,15 @@
     <!-- Rules -->
     <rule ref="PSR12"/>
 
-    <!-- Forbid comments starting with # -->
-    <rule ref="PEAR.Commenting.InlineComment"/>
-
-    <!-- Disallow else if in favor of elseif -->
+    <!-- Disallow else if in favor of elseif (increase PSR12 severity level from warning to error) -->
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
         <type>error</type>
     </rule>
 
-    <!-- Change the line limit defined in the PSR12 preset -->
+    <!-- Forbid comments starting with # -->
+    <rule ref="PEAR.Commenting.InlineComment"/>
+
+    <!-- Change the line length limit defined in the PSR12 preset -->
     <rule ref="Generic.Files.LineLength">
         <properties>
             <property name="lineLimit" value="160"/>
@@ -36,9 +36,6 @@
     <!-- Forbid final methods in final classes -->
     <rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
 
-    <!-- Forbid useless empty method overrides -->
-    <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
-
     <!-- Force whitespace after a type cast -->
     <rule ref="Generic.Formatting.SpaceAfterCast"/>
 
@@ -57,7 +54,7 @@
     <!-- Forbid backtick operator -->
     <rule ref="Generic.PHP.BacktickOperator"/>
 
-    <!-- Forbid 'php_sapi_name()' function -->
+    <!-- Forbid 'php_sapi_name()' function, use PHP_SAPI -->
     <rule ref="Generic.PHP.SAPIUsage"/>
 
     <!-- Forbid deprecated functions -->
@@ -84,6 +81,9 @@
             </property>
         </properties>
     </rule>
+
+    <!-- Forbid goto instruction -->
+    <rule ref="Generic.PHP.DiscourageGoto"/>
 
     <!-- Forbid merge conflict artifacts left in files -->
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
