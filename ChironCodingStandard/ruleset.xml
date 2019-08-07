@@ -60,24 +60,22 @@
     <!-- Forbid deprecated functions -->
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
 
-    <!-- Forbid a few alias functions, i.e. 'is_double()', 'sizeof()' -->
+    <!-- Forbid a few alias functions, i.e. 'is_double()', 'is_long()' -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
             <property name="forbiddenFunctions" type="array">
-                <element key="delete" value="unset"/>
                 <element key="doubleval" value="floatval"/>
                 <element key="is_double" value="is_float"/>
                 <element key="is_integer" value="is_int"/>
                 <element key="is_long" value="is_int"/>
-                <!--<element key="is_null" value="null"/>--><!-- Disable, when null is used it forbid the use of the function -->
-                <!--<element key="empty" value="null"/>-->
                 <element key="is_real" value="is_float"/>
                 <element key="is_writeable" value="is_writable"/>
-                <element key="join" value="implode"/>
-                <element key="key_exists" value="array_key_exists"/>
-                <element key="pos" value="current"/>
-                <element key="sizeof" value="count"/>
                 <element key="strchr" value="strstr"/>
+                <!-- Disable, debug functions -->
+                <element key="d" value="null"/>
+                <element key="dd" value="null"/>
+                <element key="dump" value="null"/>
+                <element key="var_dump" value="null"/>
             </property>
         </properties>
     </rule>
@@ -90,6 +88,10 @@
 
     <!-- Require comma after last element in multi-line array -->
     <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
+
+    <!-- Forbid dead code -->
+    <!-- Disbled this rule because there is false positive when the private function is used as a callback in array_walk for exemple -->
+    <!-- <rule ref="SlevomatCodingStandard.Classes.UnusedPrivateElements"/> -->
 
     <!-- Require presence of constant visibility -->
     <rule ref="SlevomatCodingStandard.Classes.ClassConstantVisibility">
@@ -379,7 +381,7 @@
 
     <!-- Forbid functions inside functions -->
     <rule ref="Squiz.PHP.InnerFunctions"/>
-    
+
     <!-- Require PHP function calls in lowercase -->
     <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
 
