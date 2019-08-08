@@ -60,18 +60,17 @@
     <!-- Forbid deprecated functions -->
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
 
-    <!-- Forbid a few alias functions, i.e. 'is_double()', 'is_long()' -->
+    <!-- Forbid a bunch of functions -->
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
             <property name="forbiddenFunctions" type="array">
+                <!-- Forbid, a few alias functions for scalars -->
                 <element key="doubleval" value="floatval"/>
                 <element key="is_double" value="is_float"/>
                 <element key="is_integer" value="is_int"/>
                 <element key="is_long" value="is_int"/>
                 <element key="is_real" value="is_float"/>
-                <element key="is_writeable" value="is_writable"/>
-                <element key="strchr" value="strstr"/>
-                <!-- Disable, debug functions -->
+                <!-- Forbid, remaining debug functions in the code -->
                 <element key="d" value="null"/>
                 <element key="dd" value="null"/>
                 <element key="dump" value="null"/>
