@@ -67,13 +67,15 @@
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
             <property name="forbiddenFunctions" type="array">
-                <!-- Forbid, a few alias functions for scalars -->
+                <!-- Forbid 'empty()' use more strict comparaison instead -->
+                <element key="empty" value="null"/>
+                <!-- Forbid some alias functions for scalars -->
                 <element key="doubleval" value="floatval"/>
                 <element key="is_double" value="is_float"/>
                 <element key="is_integer" value="is_int"/>
                 <element key="is_long" value="is_int"/>
                 <element key="is_real" value="is_float"/>
-                <!-- Forbid, remaining debug functions in the code -->
+                <!-- Forbid remaining debug functions in the code -->
                 <element key="d" value="null"/>
                 <element key="dd" value="null"/>
                 <element key="dump" value="null"/>
