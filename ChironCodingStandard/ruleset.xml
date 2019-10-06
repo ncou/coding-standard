@@ -3,7 +3,10 @@
     <description>Chiron PHP Coding Standard</description>
 
     <!-- Rules -->
-    <rule ref="PSR12"/>
+    <rule ref="PSR12">
+        <!-- Already checked with the sniff Squiz.WhiteSpace.SemicolonSpacing.Incorrect -->
+        <exclude name="PSR12.Files.DeclareStatement.SpaceFoundBeforeSemicolon"/>
+    </rule>
 
     <!-- Disallow else if in favor of elseif (increase PSR12 severity level from warning to error) -->
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration.NotAllowed">
@@ -321,13 +324,7 @@
     </rule>-->
 
     <!-- Require presence of declare(strict_types=1) -->
-    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes">
-        <properties>
-            <property name="newlinesCountBetweenOpenTagAndDeclare" value="2"/>
-            <property name="spacesCountAroundEqualsSign" value="0"/>
-            <property name="newlinesCountAfterDeclare" value="2"/>
-        </properties>
-    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing"/>
 
     <!-- Require use of short versions of scalar types (i.e. int instead of integer) -->
     <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints"/>
