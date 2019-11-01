@@ -302,9 +302,6 @@
     <!-- Forbid weak comparisons -->
     <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators"/>
 
-    <!-- Forbid whitespace after the spread operator -->
-    <rule ref="SlevomatCodingStandard.Operators.SpreadOperatorSpacing"/>
-
     <!-- Forbid 'list(...)' syntax -->
     <rule ref="SlevomatCodingStandard.PHP.ShortList"/>
 
