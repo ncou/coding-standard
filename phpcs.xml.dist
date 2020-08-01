@@ -21,5 +21,5 @@
     <file>tests/</file>
 
     <!-- Load the ruleset.xml file from this folder -->
-    <rule ref="ChironCodingStandard"/>
+    <rule ref="Chiron"/>
 </ruleset>
