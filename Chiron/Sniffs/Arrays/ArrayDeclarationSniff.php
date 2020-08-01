@@ -10,7 +10,9 @@ use PHP_CodeSniffer\Util\Tokens;
 use Chiron\Helpers\FixerHelper;
 
 /**
- * A test to ensure that arrays conform to the array coding standard.
+ * Ensure that arrays conform to the array coding standard format.
+ *
+ * @see https://github.com/VincentLanglet/symfony-custom-coding-standard/blob/master/SymfonyCustom/Sniffs/Arrays/ArrayDeclarationSniff.php
  */
 class ArrayDeclarationSniff implements Sniff
 {
@@ -24,7 +26,10 @@ class ArrayDeclarationSniff implements Sniff
      */
     public function register(): array
     {
-        return [T_ARRAY, T_OPEN_SHORT_ARRAY];
+        return [
+            T_ARRAY,
+            T_OPEN_SHORT_ARRAY
+        ];
     }
 
     /**
