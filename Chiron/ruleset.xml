@@ -2,7 +2,7 @@
 <ruleset name="Chiron-Coding-Standard" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../vendor/squizlabs/php_codesniffer/phpcs.xsd">
     <description>Chiron PHP Coding Standard</description>
 
-    <!-- Rules -->
+    <!-- Import PSR-12 coding standard (base) -->
     <rule ref="PSR12">
         <!-- Already checked with the sniff Squiz.WhiteSpace.SemicolonSpacing.Incorrect -->
         <exclude name="PSR12.Files.DeclareStatement.SpaceFoundBeforeSemicolon"/>
