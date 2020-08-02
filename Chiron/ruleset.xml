@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<ruleset name="Chiron-Coding-Standard" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../vendor/squizlabs/php_codesniffer/phpcs.xsd">
+<ruleset name="Chiron-Coding-Standard"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../vendor/squizlabs/php_codesniffer/phpcs.xsd"
+>
     <description>Chiron PHP Coding Standard</description>
 
     <!-- Import PSR-12 coding standard (base) -->
@@ -25,14 +28,14 @@
     </rule>
 
     <!-- Force array element indentation with one tab stop -->
-    <rule ref="Generic.Arrays.ArrayIndent"/>
+    <!-- <rule ref="Generic.Arrays.ArrayIndent"/> -->
 
     <!-- Forbid 'array(...)' -->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 
     <!-- Forbid empty statements -->
     <rule ref="Generic.CodeAnalysis.EmptyStatement">
-        <!-- But allow empty catch -->
+        <!-- But allow empty try/catch -->
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch"/>
     </rule>
 
@@ -92,7 +95,7 @@
     <rule ref="Generic.VersionControl.GitMergeConflict"/>
 
     <!-- Require comma after last element in multi-line array -->
-    <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/>
+    <!-- <rule ref="SlevomatCodingStandard.Arrays.TrailingArrayComma"/> -->
 
     <!-- Forbid dead code -->
     <!-- Disbled this rule because there is false positive when the private function is used as a callback in array_walk for exemple -->
@@ -301,14 +304,6 @@
 
     <!-- Forbid useless semicolon `;` -->
     <rule ref="SlevomatCodingStandard.PHP.UselessSemicolon"/>
-
-    <!-- TODO : uncomment once slevomat publish a new release : https://github.com/slevomat/coding-standard/tree/master#slevomatcodingstandardphpreferencespacing-  -->
-    <!-- Require a space after the refenrence '&' opérator -->
-    <!--<rule ref="SlevomatCodingStandard.PHP.ReferenceSpacing">
-        <properties>
-            <property name="spacesCountAfterReference" value="1"/>
-        </properties>
-    </rule>-->
 
     <!-- Require presence of declare(strict_types=1) -->
     <rule ref="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing"/>
