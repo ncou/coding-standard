@@ -275,9 +275,6 @@
     <!-- Forbid useless alias for classes, constants and functions -->
     <rule ref="SlevomatCodingStandard.Namespaces.UselessAlias"/>
 
-    <!-- Forbid superfluous leading backslash in use statements -->
-    <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
-
     <!-- Forbid useless uses of the same namespace -->
     <rule ref="SlevomatCodingStandard.Namespaces.UseFromSameNamespace"/>
 
