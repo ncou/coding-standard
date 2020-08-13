@@ -193,14 +193,16 @@
     <!-- Report use of the useless @inheritDoc annotation -->
     <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
 
-    <!-- Require consistent spacing for control structures (add a line break) -->
-    <rule ref="SlevomatCodingStandard.ControlStructures.ControlStructureSpacing">
+    <!-- Require consistent spacing for jump statements -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.JumpStatementsSpacing">
         <properties>
             <property name="tokensToCheck" type="array">
                 <element value="T_RETURN" />
                 <element value="T_THROW" />
                 <element value="T_BREAK" />
                 <element value="T_CONTINUE" />
+                <element value="T_YIELD" />
+                <element value="T_YIELD_FROM" />
             </property>
         </properties>
     </rule>
