@@ -196,6 +196,16 @@
     <!-- Report use of the useless @inheritDoc annotation -->
     <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
 
+    <!-- Force rules for function phpDoc -->
+    <rule ref="Squiz.Commenting.FunctionComment">
+        <!-- Doc comment is not required for every method -->
+        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+        <!-- Do not require comments for `@param` -->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+        <!-- Do not require `@return` for void methods -->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingReturn"/>
+    </rule>
+
     <!-- Require consistent spacing for jump statements -->
     <rule ref="SlevomatCodingStandard.ControlStructures.JumpStatementsSpacing">
         <properties>
