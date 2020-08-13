@@ -4,50 +4,36 @@ declare(strict_types=1);
 
 namespace Chiron\Sniffs\NamingConventions;
 
-use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
- * ValidClassNameSniff.
+ * Throws errors if class naming conventions are not met.
  *
- * Throws errors if Chiron's naming conventions are not met.
+ * @see https://github.com/djoos/Symfony-coding-standard/blob/master/Symfony/Sniffs/NamingConventions/ValidClassNameSniff.php
  */
 class ValidClassNameSniff implements Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
+     * @return int[]
      */
-    public $supportedTokenizers = array(
-        'PHP',
-    );
-
-    /**
-     * Returns an array of tokens this test wants to listen for.
-     *
-     * @return array
-     */
-    public function register()
+    public function register(): array
     {
-        return array(
+        return [
             T_INTERFACE,
             T_TRAIT,
             T_EXTENDS,
             T_ABSTRACT
-        );
+        ];
     }
 
     /**
-     * Processes this test, when one of its tokens is encountered.
-     *
-     * @param File $phpcsFile All the tokens found in the document.
-     * @param int  $stackPtr  The position of the current token in
-     *                        the stack passed in $tokens.
+     * @param File $phpcsFile
+     * @param int  $stackPtr
      *
      * @return void
      */
-    public function process(File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr): void
     {
         $tokens   = $phpcsFile->getTokens();
         $line     = $tokens[$stackPtr]['line'];
@@ -134,7 +120,5 @@ class ValidClassNameSniff implements Sniff
 
             $stackPtr++;
         }
-
-        return;
     }
 }

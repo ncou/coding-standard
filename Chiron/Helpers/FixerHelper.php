@@ -76,10 +76,10 @@ final class FixerHelper
     ): void {
         $phpcsFile->fixer->beginChangeset();
 
-        if (0 === $found) {
+        if ($found === 0) {
             $phpcsFile->fixer->addContent($stackPtr, str_repeat(' ', $expected));
         } else {
-            if ('newline' === $found) {
+            if ($found === 'newline') {
                 $next = $phpcsFile->findNext(T_WHITESPACE, $stackPtr, null, true);
 
                 for ($i = $stackPtr + 1; $i < $next; $i++) {
@@ -109,10 +109,10 @@ final class FixerHelper
     ): void {
         $phpcsFile->fixer->beginChangeset();
 
-        if (0 === $found) {
+        if ($found === 0) {
             $phpcsFile->fixer->addContent($stackPtr - 1, str_repeat(' ', $expected));
         } else {
-            if ('newline' === $found) {
+            if ($found === 'newline') {
                 $prev = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr - 1, null, true);
 
                 for ($i = $prev + 1; $i < $stackPtr; $i++) {
