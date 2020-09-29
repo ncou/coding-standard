@@ -37,8 +37,12 @@
         "squizlabs/php_codesniffer": "^3.5.5"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.5.5",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Chiron\\": "Chiron/"
+        }
     },
     "scripts": {
         "phpunit": "phpunit --colors=always"
