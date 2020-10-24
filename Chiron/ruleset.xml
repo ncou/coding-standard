@@ -76,7 +76,7 @@
         <properties>
             <property name="forbiddenFunctions" type="array">
                 <!-- Forbid 'empty()' use more strict comparaison instead -->
-                <element key="empty" value="null"/>
+                <!-- <element key="empty" value="null"/> -->
                 <!-- Forbid some alias functions for scalars -->
                 <element key="doubleval" value="floatval"/>
                 <element key="is_double" value="is_float"/>
@@ -192,7 +192,7 @@
     <!-- <rule ref="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/> -->
 
     <!-- Report use of the useless @inheritDoc annotation -->
-    <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/>
+    <!-- <rule ref="SlevomatCodingStandard.Commenting.UselessInheritDocComment"/> -->
 
     <!-- Force rules for function phpDoc -->
     <rule ref="Squiz.Commenting.FunctionComment">
