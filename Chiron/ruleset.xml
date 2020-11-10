@@ -374,9 +374,6 @@
         </properties>
     </rule>-->
 
-    <!-- Require the return type hint to have one space (i.e. function foo(): ?int) -->
-    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing"/>
-
     <!-- Forbid useless @var for constants -->
     <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
 
