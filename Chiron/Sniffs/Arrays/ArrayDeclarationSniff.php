@@ -619,8 +619,7 @@ class ArrayDeclarationSniff implements Sniff
                 $found = $tokens[$index['arrow']]['column']
                     - (mb_strlen($index['index_content']) + $tokens[$index['index']]['column']);
 
-                //if ($found < 0) {
-                if ($tokens[$index['index']]['line'] !== $tokens[$index['arrow']]['line']) {
+                if ($found < 0) {
                     $found = 'newline';
                 }
 
