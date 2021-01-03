@@ -10,7 +10,7 @@ use PHP_CodeSniffer\Util\Tokens;
 use Chiron\Helpers\FixerHelper;
 
 /**
- * Ensure that arrays conform to the array coding standard format.
+ * A test to ensure that arrays conform to the array coding standard.
  *
  * @see https://github.com/VincentLanglet/symfony-custom-coding-standard/blob/master/SymfonyCustom/Sniffs/Arrays/ArrayDeclarationSniff.php
  */
@@ -27,7 +27,7 @@ class ArrayDeclarationSniff implements Sniff
     public function register(): array
     {
         return [
-            T_ARRAY,
+            T_ARRAY, 
             T_OPEN_SHORT_ARRAY
         ];
     }
@@ -395,6 +395,16 @@ class ArrayDeclarationSniff implements Sniff
                 // Find the start of index that uses this double arrow.
                 $indexEnd = $phpcsFile->findPrevious(T_WHITESPACE, $nextToken - 1, $start, true);
                 $indexStart = $phpcsFile->findStartOfStatement($indexEnd);
+
+                // Handle multi-lines index.
+                while ($tokens[$indexStart]['line'] !== $tokens[$indexEnd]['line']) {
+                    $indexStart = $phpcsFile->findNext(
+                        Tokens::$emptyTokens,
+                        $indexStart + 1,
+                        $indexEnd + 1,
+                        true
+                    );
+                }
 
                 if ($indexStart === $indexEnd) {
                     $currentEntry['index'] = $indexEnd;
