@@ -48,6 +48,7 @@
         "phpunit": "phpunit --colors=always"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "dealerdirect/phpcodesniffer-composer-installer": true
     }
 }
