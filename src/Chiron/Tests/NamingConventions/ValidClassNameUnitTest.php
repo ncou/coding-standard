@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Chiron\Tests\Errors;
+namespace Chiron\Tests\NamingConventions;
 
-use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+use Chiron\Tests\AbstractSniffUnitTest;
 
 /**
- * Unit test class for the ExceptionMessageUnitTest sniff.
+ * Unit test class for the ValidClassNameUnitTest sniff.
+ *
+ * A sniff unit test checks a .inc file for expected violations of a single
+ * coding standard. Expected errors and warnings are stored in this class.
  */
-class ExceptionMessageUnitTest extends AbstractSniffUnitTest
+class ValidClassNameUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -23,6 +26,9 @@ class ExceptionMessageUnitTest extends AbstractSniffUnitTest
     {
         return [
             3 => 1,
+            7 => 1,
+            14 => 1,
+            18 => 1,
         ];
     }
 

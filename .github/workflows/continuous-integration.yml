@@ -1,0 +1,27 @@
+name: "build"
+
+on: ["pull_request", "push"]
+
+jobs:
+  validate:
+    name: "Ruleset validation"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, intl
+          coverage: none
+
+      - name: Install dependencies (Composer)
+        uses: ramsey/composer-install@v2
+
+      - name: "XML Validation"
+        run: "composer lint"
+
+      - name: "Ruleset test unit"
+        run: "composer phpunit"

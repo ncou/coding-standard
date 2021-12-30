@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chiron\Tests\Classes;
 
-use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+use Chiron\Tests\AbstractSniffUnitTest;
 
 /**
  * Unit test class for the PropertyDeclaration sniff.
