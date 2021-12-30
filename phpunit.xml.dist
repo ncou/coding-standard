@@ -8,7 +8,7 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         bootstrap="tests_bootstrap.php"
+         bootstrap="bootstrap.php"
         >
     <testsuites>
         <testsuite name="Chiron Coding Standard Test Suite">
