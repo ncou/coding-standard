@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Chiron\Sniffs\Arrays;
+namespace Chiron\Tests\Arrays;
 
 use Chiron\Tests\AbstractSniffUnitTest;
 
