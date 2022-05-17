@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Chiron-Coding-Standard" xsi:noNamespaceSchemaLocation="../../vendor/squizlabs/php_codesniffer/phpcs.xsd">
-    <description>Chiron PHP Coding Standard</description>
+    <description>A common coding standard for Chiron's PHP libraries.</description>
 
     <!-- Import PSR-12 coding standard (base) -->
     <rule ref="PSR12">
@@ -18,8 +18,18 @@
         <type>error</type>
     </rule>
 
+    <!-- Require NOWDOC if string interpolation not used -->
+    <rule ref="SlevomatCodingStandard.PHP.RequireNowdoc"/>
+
     <!-- Forbid comments starting with # -->
     <rule ref="PEAR.Commenting.InlineComment"/>
+
+    <!-- Warn about TODOs and FIXMEs in code. -->
+    <rule ref="Generic.Commenting.Fixme"/>
+    <!-- <rule ref="Generic.Commenting.Todo"/> Regle à réactiver plus tard une fois tous les TODO traités -->
+
+    <!-- Constants must be all uppercase. -->
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
 
     <!-- Change the line length limit defined in the PSR12 preset -->
     <rule ref="Generic.Files.LineLength">
@@ -91,6 +101,9 @@
         </properties>
     </rule>
 
+    <!-- Require arrow functions for simple functions. -->
+    <rule ref="SlevomatCodingStandard.Functions.RequireArrowFunction"/>
+
     <!-- Forbid goto instruction -->
     <rule ref="Generic.PHP.DiscourageGoto"/>
 
@@ -120,14 +133,15 @@
     <!-- Forbid uses of multiple traits separated by comma -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseDeclaration"/>
 
+    <!-- Forbid superfluous leading backslash in use statements -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UseDoesNotStartWithBackslash"/>
+
     <!-- Require no spaces before trait use, between trait uses and one space after trait uses -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
-        <properties>
-            <property name="linesCountAfterLastUse" value="1"/>
-            <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
-            <property name="linesCountBeforeFirstUse" value="0"/>
-            <property name="linesCountBetweenUses" value="0"/>
-        </properties>
+        <!-- Already checked via PSR12.Traits.UseDeclaration.UseAfterBrace -->
+        <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountBeforeFirstUse"/>
+        <!-- Already checked via PSR12.Traits.UseDeclaration.NoBlankLineAfterUse -->
+        <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountAfterLastUse"/>
     </rule>
 
     <!-- Disabling this rule
@@ -361,19 +375,34 @@
     <!-- Require types to be written as natively if possible;
          require iterable types to specify phpDoc with their content;
          forbid useless/duplicated information in phpDoc -->
-    <!--
-    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+    <rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.UselessAnnotation"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation"/>
+    </rule>
+
+    <!-- Require no space around `|`, null typehint at the end and usage of ? for nullable type hint -->
+    <rule ref="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat">
         <properties>
-            <property name="allAnnotationsAreUseful" value="true"/>
-            <property name="enableEachParameterAndReturnInspection" value="true"/>
-            <property name="traversableTypeHints" type="array">
-                <element value="Traversable"/>
-            </property>
+            <property name="withSpaces" value="no"/>
+            <property name="shortNullable" value="yes"/>
+            <property name="nullPosition" value="last"/>
         </properties>
-    </rule>-->
+    </rule>
+
+    <!-- Clean up unnecessary variables -->
+    <rule ref="SlevomatCodingStandard.Variables.UselessVariable"/>
+    <rule ref="SlevomatCodingStandard.Variables.UnusedVariable"/>
 
     <!-- Forbid useless @var for constants -->
     <rule ref="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint"/>
+
+    <!-- For arrow functions, require 1 space after the keyword and before/after the arrow -->
+    <rule ref="SlevomatCodingStandard.Functions.ArrowFunctionDeclaration"/>
 
     <!-- Forbid spaces around square brackets -->
     <rule ref="Squiz.Arrays.ArrayBracketSpacing"/>
@@ -438,6 +467,14 @@
         <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore"/>
         <!-- Already checked with the sniff PSR12.Operators.OperatorSpacing.NoSpaceAfter -->
         <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
+    </rule>
+
+    <!-- Force whitespace before and after concatenation -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="spacing" value="1"/>
+            <property name="ignoreNewlines" value="true"/>
+        </properties>
     </rule>
 
     <!-- Forbid spaces around '->' operator -->
