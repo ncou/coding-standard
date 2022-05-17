@@ -6,6 +6,10 @@
     <rule ref="PSR12">
         <!-- Already checked with the sniff Squiz.WhiteSpace.SemicolonSpacing.Incorrect -->
         <exclude name="PSR12.Files.DeclareStatement.SpaceFoundBeforeSemicolon"/>
+        <!-- checked by SlevomatCodingStandard.Classes.TraitUseSpacing -->
+        <exclude name="PSR12.Traits.UseDeclaration"/>
+        <!-- checked by SlevomatCodingStandard.Operators.SpreadOperatorSpacing -->
+        <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterVariadic"/>
     </rule>
 
     <!-- Require presence of constant visibility -->
@@ -138,10 +142,12 @@
 
     <!-- Require no spaces before trait use, between trait uses and one space after trait uses -->
     <rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
-        <!-- Already checked via PSR12.Traits.UseDeclaration.UseAfterBrace -->
-        <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountBeforeFirstUse"/>
-        <!-- Already checked via PSR12.Traits.UseDeclaration.NoBlankLineAfterUse -->
-        <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountAfterLastUse"/>
+        <properties>
+            <property name="linesCountAfterLastUse" value="1"/>
+            <property name="linesCountAfterLastUseWhenLastInClass" value="0"/>
+            <property name="linesCountBeforeFirstUse" value="0"/>
+            <property name="linesCountBetweenUses" value="0"/>
+        </properties>
     </rule>
 
     <!-- Disabling this rule
