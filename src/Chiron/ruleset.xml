@@ -24,6 +24,7 @@
     <!-- Change the line length limit defined in the PSR12 preset -->
     <rule ref="Generic.Files.LineLength">
         <properties>
+            <property name="ignoreComments" value="true"/>
             <property name="lineLimit" value="160"/>
             <property name="absoluteLineLimit" value="200"/>
         </properties>
